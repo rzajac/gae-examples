@@ -1,5 +1,5 @@
 ###queue.yaml
 queue:
 
-- name: LoginCounter
-  rate: 30/m
+- name: Stations
+  rate: 30/s

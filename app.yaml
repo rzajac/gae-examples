@@ -1,10 +1,13 @@
 application: gaeexamples
-version: 0-0-2
+version: 0-0-3
 runtime: python27
 api_version: 1
 threadsafe: true
 
 handlers:
+
+- url: /_ah/pipeline(/.*)?
+  script: pipeline.handlers.app
 
 - url: /.*
   script: main.app

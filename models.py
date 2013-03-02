@@ -9,10 +9,6 @@ models.py
 from google.appengine.ext import ndb
 
 
-class User(ndb.Model):
-    login_name = ndb.StringProperty()
-    password = ndb.StringProperty()
-
-
-class LoginCounter(ndb.Model):
-    count = ndb.IntegerProperty(default=0, indexed=False)
+class Station(ndb.Model):
+    callsign = ndb.StringProperty()
+    some_value = ndb.IntegerProperty(default=0)
