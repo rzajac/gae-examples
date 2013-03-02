@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
 '''
 webhandlers.py
 '''
@@ -11,7 +12,7 @@ webhandlers.py
 import webapp2
 
 # MyApp imports
-from pipelines import CreatePipeline, EditPipeline
+from pipelines import CreatePipeline, EditPipelineRoot
 
 class MainPage(webapp2.RequestHandler):
     '''Main page handler'''
@@ -42,7 +43,7 @@ class EditStations(webapp2.RequestHandler):
 
     def get(self):
 
-        job = EditPipeline()
+        job = EditPipelineRoot()
         job.start(queue_name="Stations")
 
         return self.response.out.write('Edit stations pipeline started.')

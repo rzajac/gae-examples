@@ -16,6 +16,7 @@ from google.appengine.datastore.datastore_query import Cursor
 
 # MyApp imports
 import pipeline
+from pipeline.common import Sum
 from models import Station
 
 
@@ -43,6 +44,16 @@ class CreatePipeline(pipeline.Pipeline):
         return ''.join(random.choice(chars) for x in range(size))
 
 
+class EditPipelineRoot(pipeline.Pipeline):
+
+    def run(self):
+
+        total = yield EditPipeline()
+        yield Sum(total)
+
+    def finalized(self):
+        logging.info('-------> %s' % str(self.outputs.default))
+
 class EditPipeline(pipeline.Pipeline):
 
     def run(self, cursor=None, counter=0):
@@ -53,9 +64,14 @@ class EditPipeline(pipeline.Pipeline):
         stations, next_cur, more = Station.query().fetch_page(10, start_cursor=cursor)
 
         if more and next_cur:
-            yield EditPipeline(cursor=next_cur.urlsafe(), counter=counter + 1)
+            total = yield EditPipeline(cursor=next_cur.urlsafe(), counter=counter + 1)
+        else:
+            total = 0
 
+        my_total = 0
         for station in stations:
             station.some_value += 1
+            my_total += station.some_value
 
         ndb.put_multi(stations)
+        yield Sum(total, my_total)
