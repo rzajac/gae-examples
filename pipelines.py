@@ -1,9 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""
+'''
 pipelines.py
-"""
+
+This file is an example code for presentation I gave for GDG Krakow.
+Slides are available here: http://rzajac.github.io/gaeslides/#1
+
+@author: Rafal Zajac rzajac<at>gmail<dot>com
+@copyright: Copyright 2007-2013 Rafal Zajac rzajac<at>gmail<dot>com. All rights reserved.
+@license: Licensed under the MIT license
+'''
 
 # Python imports
 import logging
@@ -21,6 +28,7 @@ from models import Station
 
 
 class CreatePipeline(pipeline.Pipeline):
+    '''Create some random radio stations'''
 
     def run(self, counter_start=0):
 
@@ -45,6 +53,7 @@ class CreatePipeline(pipeline.Pipeline):
 
 
 class EditPipelineRoot(pipeline.Pipeline):
+    '''Edit radio stations root pipeline'''
 
     def run(self):
 
@@ -54,7 +63,9 @@ class EditPipelineRoot(pipeline.Pipeline):
     def finalized(self):
         logging.info('-------> %s' % str(self.outputs.default))
 
+
 class EditPipeline(pipeline.Pipeline):
+    '''Edit radio stations'''
 
     def run(self, cursor=None, counter=0):
 
