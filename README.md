@@ -15,6 +15,8 @@ Branches:
 
 The slides from the talk can be accessed: [HERE](http://rzajac.github.io/gaeslides/#1)
 
+The source code for slides is [HERE](https://github.com/rzajac/gaeslides)
+
 ## License
 
 Code is licensed under MIT license.
