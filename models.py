@@ -17,6 +17,6 @@ from google.appengine.ext import ndb
 
 
 class Station(ndb.Model):
-	'''Radio station model'''
+    '''Radio station model'''
     callsign = ndb.StringProperty()
     some_value = ndb.IntegerProperty(default=0)
